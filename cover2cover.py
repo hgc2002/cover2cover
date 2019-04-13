@@ -53,9 +53,20 @@ def convert_lines(j_lines, into):
         else:
             cline.set('branch', 'false')
 
+def determine_file_ext(j_package, class_path):
+    class_name = os.path.basename(class_path)
+    sourcefiles = j_package.findall("sourcefile")
+    for sourcefile in sourcefiles:
+        sourcefile_name, sourcefile_ext = os.path.splitext(sourcefile.attrib.get("name"))
+        if class_name == sourcefile_name:
+            return sourcefile_ext
+    return ".java"
+
 def guess_filename(path_to_class):
     m = re.match('([^$]*)', path_to_class)
-    return (m.group(1) if m else path_to_class) + '.java'
+    class_path = (m.group(1) if m else path_to_class)
+    ext = determine_file_ext(j_package, class_path)
+    return  class_path + ext
 
 def add_counters(source, target):
     target.set('line-rate',   counter(source, 'LINE'))
