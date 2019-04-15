@@ -1,3 +1,7 @@
+# Edit
+
+Modified the original script from cover2cover to include support for different file types (not just Java). For example, I work on a project that is predominantly Kotlin and I need to be able to provide coverage for our Kotlin files. However, my modification defaults a class to Java if a Class isn't found in the pool of Source Files. Feel free to open up any issues you encounter, as well as fork this repo. Your feedback is celebrated and greatly appreciated!
+
 # cover2cover
 
 A script for converting JaCoCo XML coverage reports into Cobertura XML coverage
